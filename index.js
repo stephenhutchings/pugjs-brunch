@@ -178,6 +178,14 @@ class PugCompiler {
     // set options.filename to the filename, but relative to Brunch root
     options.filename = path
 
+    // let each file know where it's located
+    if (!locals.__) {
+      locals.__ = {
+        filepath: path,
+        directory: sysPath.dirname(path)
+      }
+    }
+
     // now set the staticBasedir only for assets (static html files)
     if (asset) {
       options.basedir = config.staticBasedir
